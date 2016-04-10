@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -eu
+
+if [ ! -e /etc/slack-irc.json ]; then
+  echo >&2 "No config file detected. Please mount a config file into the "
+  echo >&2 "container at /etc/slack-irc.json using the -v/--volume option to "
+  echo >&2 "docker run."
+  exit 1
+fi
+
+exec /usr/bin/slack-irc --config /etc/slack-irc.json
